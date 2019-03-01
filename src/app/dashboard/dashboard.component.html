@@ -1,0 +1,50 @@
+<div class="container-fluid">
+        <div class="col bg-info text-white">
+            <a class="navbar-brand">ACTIVEDGE CLOCK IN/OUT SYSTEM</a>
+        </div>     
+           <table class="table table-bordered">
+               <thead class="thead-dark">
+                   <tr>
+                       <th scope="col">Staff</th>
+                       <th scope="col">Department</th>
+                        <th scope="col">Time In</th>
+                       <th scope="col">Time Out</th>  
+                   </tr>
+               </thead>
+               <tbody>
+                   <tr *ngFor="let staff of staffs" class="m-1 p-1 bg-light">
+                        <td>
+                            {{staff.name}}  
+                        </td>
+                        <td>
+                                {{staff.department}}
+                        </td>
+                        <td>
+                            <button (click)="showTime(staff)">Click</button>
+                            <span *ngIf="staff.time">
+                                Time: {{staff.time | date: 'shortTime'}}
+                            </span>
+                        </td>
+                        <td>
+                            <button (click)="displayTime(staff)">Click</button>
+                            <span *ngIf="staff.times">
+                                Time: {{staff.times | date: 'shortTime'}}
+                            </span>
+                        </td>
+                    </tr>
+               </tbody>
+           </table>
+           <div>   
+                <div class="form-inline float-left mr-1">
+                    <select class="form-control" value="SelectedDepartment"
+                        (change)="changeDepartment($event.target.value)">
+                        <option *ngFor="let dep of departments">{{dep}}</option>
+                        </select>
+                        <button class="btn btn-block btn-primary m-t-3" [type]="submit" routerLink="/admin"> 
+                            Admin
+                          </button> 
+                        </div>    
+                </div> 
+                
+        
+</div>
