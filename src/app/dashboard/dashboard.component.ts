@@ -17,6 +17,7 @@ export class DashboardComponent {
     public currentTimeOut = null;
     public chosenStaff = null;
     public admin = null;
+    
    
 
     
@@ -24,13 +25,24 @@ export class DashboardComponent {
     constructor(private repository: StaffRepository,
         private router: Router) { }
 
+       
     
         showTime(staff){
+              
+        
+           
             staff.time = new Date();
-         }
+            staff.action = true;
+            
+        }
+            
+         
          displayTime(staff){
             
             staff.times = new Date();
+            staff.actions = true;
+            staff.action = false;
+
         }
 
     get staffs(): Staff[] {
