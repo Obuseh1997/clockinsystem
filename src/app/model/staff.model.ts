@@ -4,5 +4,6 @@ export class Staff {
         public id?: number,
         public name?: string,
         public department?: string,
-        public role?: string) { }
+        public role?: string,
+        public time?: string) { }
 }

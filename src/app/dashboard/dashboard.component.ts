@@ -17,6 +17,8 @@ export class DashboardComponent {
     public currentTimeOut = null;
     public chosenStaff = null;
     public admin = null;
+    public flagOne = true;
+    public flagTwo = true;
    
 
     
@@ -27,10 +29,16 @@ export class DashboardComponent {
     
         showTime(staff){
             staff.time = new Date();
-         }
+            this.flagOne = false;
+            this.flagTwo = true;
+        }
+            
+         
          displayTime(staff){
             
             staff.times = new Date();
+            this.flagTwo = false;
+            this.flagOne = true;
         }
 
     get staffs(): Staff[] {
