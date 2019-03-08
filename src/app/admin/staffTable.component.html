@@ -1,0 +1,27 @@
+<table class="table table-sm table-striped">
+    <thead>
+        <tr>
+            <th>ID</th><th>Name</th><th>Department</th><th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of getStaffs()">
+            <td>{{p.id}}</td>
+            <td>{{p.name}}</td>
+            <td>{{p.department}}</td>
+            <td>{{p.role}}</td>
+            <td>
+                <button class="btn btn-sm btn-warning"
+                        [routerLink]="['/admin/main/staffs/edit', p.id]">
+                    Edit
+                    </button>
+                    <button class="btn btn-sm btn-danger" (click)="deleteStaff(p.id)">
+                        Delete
+                    </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button class="btn btn-primary" routerLink="/admin/main/staffs/create">
+    Create New Staff
+</button>
