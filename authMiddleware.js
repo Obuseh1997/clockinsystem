@@ -17,10 +17,10 @@ res.json({ success: false });
 }
 res.end();
 return;
-} else if ((((req.url.startsWith("/api/staff")
-|| req.url.startsWith("/staff"))
-|| (req.url.startsWith("/api/department")
-|| req.url.startsWith("/department"))) && req.method != "GET")
+} else if ((((req.url.startsWith("/api/staffs")
+|| req.url.startsWith("/staffs"))
+|| (req.url.startsWith("/api/departments")
+|| req.url.startsWith("/departments"))) && req.method != "GET")
 || ((req.url.startsWith("/api/entries")
 || req.url.startsWith("/entries")) && req.method != "POST")) {
 let token = req.headers["authorization"];

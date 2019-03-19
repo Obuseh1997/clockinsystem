@@ -18,7 +18,7 @@ export class StaffRepository {
 
     getStaffs(department: string = null): Staff[] {
         return this.staffs
-             .filter(p => department == null || department == p.department )
+             .filter(p => department == null || department == p.department);
     }
 
     getStaff(id: number): Staff {

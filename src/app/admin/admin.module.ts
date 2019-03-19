@@ -16,7 +16,7 @@ let routing = RouterModule.forChild([
         { path: "staffs/:mode/:id", component: StaffEditorComponent },
         { path: "staffs/:mode", component: StaffEditorComponent },
         { path: "staffs", component: StaffTableComponent },
-        { path: "**", redirectTo: "staffs"}
+        { path: "**", redirectTo: "staffs" }
     ]
  },
 { path: "**", redirectTo: "auth" }

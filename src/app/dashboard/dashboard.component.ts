@@ -2,8 +2,8 @@ import { Component } from "@angular/core";
 import { Staff } from "../model/staff.model";
 import { StaffRepository } from "../model/staff.repository";
 import { Router } from "@angular/router";
-
-
+import { RestDataSource } from "../model/rest.datasource";
+ 
 
 
  
@@ -23,6 +23,7 @@ export class DashboardComponent {
     
 
     constructor(private repository: StaffRepository,
+        private datasource: RestDataSource,
         private router: Router) { }
 
        
@@ -30,11 +31,14 @@ export class DashboardComponent {
         showTime(staff){
               
         
-           
+            console.log("Hello World");
             staff.time = new Date();
             staff.action = true;
+            return this.datasource.signIn(staff.name);
             
         }
+
+       
             
          
          displayTime(staff){

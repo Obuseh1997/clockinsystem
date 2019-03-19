@@ -1,6 +1,6 @@
 module.exports = function () {
     return {
-        staff: [
+        staffs: [
             { id: 1, name: "Elvis", department: "Development",
                role: "Team Lead", time: null,
                action: null },

@@ -4,7 +4,8 @@ import { DashboardModule } from "./dashboard/dashboard.module";
 import { DashboardComponent } from "./dashboard/dashboard.component"
 import { AppComponent } from './app.component';
 import { RouterModule } from "@angular/router";
-import { DashboardFirstGuard } from "./dashboardFirst.guard"
+import { DashboardFirstGuard } from "./dashboardFirst.guard";
+
 
 
 @NgModule({
