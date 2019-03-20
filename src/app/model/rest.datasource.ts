@@ -50,7 +50,7 @@ signOut(user_id) {
     axios.post('http://localhost:8080/staff/sign-out.php', 
     {user_id : user_id}, 
         { headers: headerText }
-    )
+    ) 
         .then(response =>{
             console.log('here we are');
             console.log(response);
@@ -66,14 +66,21 @@ return this.http.get<Staff[]>(this.baseUrl + "staffs");
 }
 
 loginAdmin(username, password) {
-    console.log("fellas ahoi");
-    return this.http.post('http://192.168.1.29/biometric%20system/admin/admin_login.php', {
-        username,
-        password
-    })
-       .subscribe(response =>{
-           console.log(response, "is what we got from the server ");
-       })
+    console.log("Hello World: "+ username + password);
+
+    let headerText = {'Content-Type': 'application/json'};
+
+    axios.post('http://192.168.1.29/biometric%20system/admin/admin_login.php', 
+    {username, password}, 
+        { headers: headerText }
+    ) 
+        .then(response =>{
+            console.log('here we are');
+            console.log(response);
+        }
+        ).catch(error=>{
+            console.log(error);
+        });
 
 }
 
