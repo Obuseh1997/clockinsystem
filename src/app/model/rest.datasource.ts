@@ -8,11 +8,13 @@ import axios from "axios";
 
 const PROTOCOL = "http";
 const PORT = 3500;
+let headerText = {'Content-Type': 'application/json'};
 
 @Injectable()
 export class RestDataSource {
 baseUrl: string;
 auth_token: string;
+errorMessage: string;
 
 
 constructor(private http: HttpClient) {
@@ -24,26 +26,57 @@ this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
 
 signIn(user_id) {
     console.log("Hello World: "+ user_id);
-//    return this.http.post<Staff[]>('http://localhost:8080/staff/sign-in.php', { 
-    //    user_id: user_id
-    // }
-   axios.post<Staff[]>('http://localhost:8080/staff/sign-in.php', { 
-       user_id: user_id}
-)
-    .then(response =>{
-        console.log('here we are');
-        console.log(response);
-    }
-    ).catch(error=>{
-        console.log(error);
-    });
-   
-   
 
+    let headerText = {'Content-Type': 'application/json'};
+
+    axios.post('http://localhost:8080/staff/sign-in.php', 
+    {user_id : user_id}, 
+        { headers: headerText }
+    )
+        .then(response =>{
+            console.log('here we are');
+            console.log(response);
+        }
+        ).catch(error=>{
+            console.log(error);
+        });
 }
+
+signOut(user_id) {
+    console.log("Hello World: "+ user_id);
+
+    let headerText = {'Content-Type': 'application/json'};
+
+    axios.post('http://localhost:8080/staff/sign-out.php', 
+    {user_id : user_id}, 
+        { headers: headerText }
+    )
+        .then(response =>{
+            console.log('here we are');
+            console.log(response);
+        }
+        ).catch(error=>{
+            console.log(error);
+        });
+}
+
+
 getStaffs(): Observable<Staff[]> {
 return this.http.get<Staff[]>(this.baseUrl + "staffs"); 
 }
+
+loginAdmin(username, password) {
+    console.log("fellas ahoi");
+    return this.http.post('http://192.168.1.29/biometric%20system/admin/admin_login.php', {
+        username,
+        password
+    })
+       .subscribe(response =>{
+           console.log(response, "is what we got from the server ");
+       })
+
+}
+
 authenticate(user: string, pass: string): Observable<boolean> {
     return this.http.post<any>(this.baseUrl + "login", {
     name: user, password: pass

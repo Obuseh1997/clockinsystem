@@ -28,7 +28,7 @@ export class DashboardComponent {
 
        
     
-        showTime(staff){
+        timeIn(staff){
               
         
             console.log("Hello World");
@@ -41,11 +41,13 @@ export class DashboardComponent {
        
             
          
-         displayTime(staff){
+        timeOut(staff){
             
             staff.times = new Date();
             staff.actions = true;
             staff.action = false;
+            console.log("Hello Time Out : " +staff.times);
+            return this.datasource.signOut(staff.name);
 
         }
 

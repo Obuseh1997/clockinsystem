@@ -20,13 +20,13 @@
                                 {{staff.department}}
                         </td>
                         <td>
-                            <button [disabled]="staff.action" (click)="showTime(staff)">Click</button>
+                            <button [disabled]="staff.action" (click)="timeIn(staff)">Click</button>
                             <span *ngIf="staff.time">
                                 Time: {{staff.time | date: 'shortTime'}}
                             </span>
                         </td>
                         <td>
-                            <button [disabled]="staff.actions" (click)="displayTime(staff)">Click</button>
+                            <button [disabled]="staff.actions" (click)="timeOut(staff)">Click</button>
                             <span *ngIf="staff.times">
                                 Time: {{staff.times | date: 'shortTime'}}
                             </span>
