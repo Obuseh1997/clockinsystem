@@ -1,14 +1,19 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 import { Staff } from "./staff.model";
-import { map } from "rxjs/operators";
+import { map, catchError, tap } from "rxjs/operators";
 import { HttpHeaders } from "@angular/common/http";
 import axios from "axios";
+import { Login } from "./auth.model"
 
 const PROTOCOL = "http";
 const PORT = 3500;
-let headerText = {'Content-Type': 'application/json'};
+const httpOptions = {
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
+  };
+   
+
 
 @Injectable()
 export class RestDataSource {
@@ -65,24 +70,35 @@ getStaffs(): Observable<Staff[]> {
 return this.http.get<Staff[]>(this.baseUrl + "staffs"); 
 }
 
-loginAdmin(username, password) {
-    console.log("Hello World: "+ username + password);
 
-    let headerText = {'Content-Type': 'application/json'};
-
-    axios.post('http://192.168.1.29/biometric%20system/admin/admin_login.php', 
-    {username, password}, 
-        { headers: headerText }
-    ) 
-        .then(response =>{
-            console.log('here we are');
-            console.log(response);
-        }
-        ).catch(error=>{
-            console.log(error);
-        });
-
+loginAdmin(username: string, password: string): Observable<Login> {
+    return this.http.post<Login>('http://192.168.1.29/biometric%20system/admin/admin_login.php',
+                                  {username, password},
+                                  httpOptions)
+          .pipe(
+              tap(_ => console.log('logged in')),
+              catchError(this.handleError<Login>('loginAdmin'))
+          );
 }
+
+// loginAdmin(username, password) {
+//     console.log("Hello World: "+ username  + password);
+
+//     let headerText = {'Content-Type': 'application/json'};
+
+//     axios.post('http://192.168.1.29/biometric%20system/admin/admin_login.php', 
+//     {username, password}, 
+//         { headers: headerText }
+//     ) 
+//         .then(response =>{
+//             console.log('here we are');
+//             console.log(response);
+//         }
+//         ).catch(error=>{
+//             console.log(error);
+//         });
+
+// }
 
 authenticate(user: string, pass: string): Observable<boolean> {
     return this.http.post<any>(this.baseUrl + "login", {
@@ -108,12 +124,27 @@ deleteStaff(id: number): Observable<Staff> {
          this.getOptions());
 }
 
+ private handleError<T> (operation = 'operation', result?: T) {
+        return (error: any): Observable<T> => {
+       
+          // TODO: send the error to remote logging infrastructure
+          console.error(error); // log to console instead
+       
+          // TODO: better job of transforming error for user consumption
+          console.log(`${operation} failed: ${error.message}`);
+       
+          // Let the app keep running by returning an empty result.
+          return of(result as T);
+    };
+
+
+}
+
 private getOptions() {
     return {
         headers: new HttpHeaders({
             "Authorization": `Bearer ${this.auth_token}`
         })
-    }
+    };
 }
-
 }
