@@ -72,7 +72,7 @@ return this.http.get<Staff[]>(this.baseUrl + "staffs");
 
 
 loginAdmin(username: string, password: string): Observable<Login> {
-    return this.http.post<Login>('http://localhost/biometric_system/admin/admin_login.php',
+    return this.http.post<Login>('http://localhost:8080/biometric_system/admin/admin_login.php',
                                   {username, password},
                                   httpOptions)
           .pipe(
