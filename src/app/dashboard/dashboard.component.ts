@@ -32,9 +32,9 @@ export class DashboardComponent {
               
         
             console.log("Hello World");
-            staff.time = new Date();
+            staff.time_in = new Date();
             staff.action = true;
-            return this.datasource.signIn(staff.name);
+            return this.datasource.signIn(staff.firstName);
             
         }
 
@@ -43,11 +43,11 @@ export class DashboardComponent {
          
         timeOut(staff){
             
-            staff.times = new Date();
+            staff.time_out = new Date();
             staff.actions = true;
             staff.action = false;
-            console.log("Hello Time Out : " +staff.times);
-            return this.datasource.signOut(staff.name);
+            console.log("Hello Time Out :" + staff.time_out);
+            return this.datasource.signOut(staff.firstName);
 
         }
 

@@ -76,7 +76,7 @@ loginAdmin(username: string, password: string): Observable<Login> {
                                   {username, password},
                                   httpOptions)
           .pipe(
-              tap(_ => console.log('logged in')),
+              tap(data=> console.log('logged in ', data)),
               catchError(this.handleError<Login>('loginAdmin'))
           );
 }
@@ -100,14 +100,14 @@ loginAdmin(username: string, password: string): Observable<Login> {
 
 // }
 
-authenticate(user: string, pass: string): Observable<boolean> {
-    return this.http.post<any>(this.baseUrl + "login", {
-    name: user, password: pass
-    }).pipe(map(response => {
-    this.auth_token = response.success ? response.token : null;
-    return response.success;
-    }));
-    }
+// authenticate(user: string, pass: string): Observable<boolean> {
+//     return this.http.post<any>(this.baseUrl + "login", {
+//     name: user, password: pass
+//     }).pipe(map(response => {
+//     this.auth_token = response.success ? response.token : null;
+//     return response.success;
+//     }));
+//     }
 
 saveStaff(staff: Staff): Observable<Staff> {
     return this.http.post<Staff>(this.baseUrl + "staffs",
@@ -143,8 +143,8 @@ deleteStaff(id: number): Observable<Staff> {
 private getOptions() {
     return {
         headers: new HttpHeaders({
-            "Authorization": `Bearer ${this.auth_token}`
+            "Authorization": `Bearer <${this.auth_token}>`
         })
-    };
+    }
 }
 }

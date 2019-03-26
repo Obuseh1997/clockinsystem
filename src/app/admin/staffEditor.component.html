@@ -3,18 +3,39 @@
      <h5>{{editing ? "Edit" : "Create"}} Staff</h5> 
      </div>
     <form novalidate #form="ngForm" (ngSubmit)="save(form)">
+        <div class="form-group" >
+            <label>First Name</label> 
+            <input class="form-control" name="First name" [(ngModel)]="staff.firstName" />
+        </div>
         <div class="form-group">
-            <label>Name</label> 
-            <input class="form-control" name="name" [(ngModel)]="staff.name" />
+            <label>Last Name</label>
+            <input class="form-control" name="Last Name" [(ngModel)]="staff.lastName" required="required"/>
+        </div>
+        <div class="form-group">
+            <label>Middle Name</label>
+            <input class="form-control" name="Last Name" [(ngModel)]="staff.middleName" required/>
+        </div>
+        <div class="form-group">
+            <label>Date of Birth</label>
+            <input type="date" class="form-control" name="Date of Birth" [(ngModel)]="staff.dob" required/>
         </div>
         <div class="form-group">
             <label>Department</label>
-            <input class="form-control" name="department" [(ngModel)]="staff.department" />
+            <input  class="form-control" name="department" [(ngModel)]="staff.department" required/>
+        </div>
+        <div class="form-group">
+            <label>Gender</label>
+            <input type="gender" class="form-control" name="gender" [(ngModel)]="staff.gender" required/> 
         </div>
         <div class="form-group">
             <label>Role</label>
-            <input class="form-control" name="role" [(ngModel)]="staff.role" />
+            <input class="form-control" name="role" [(ngModel)]="staff.role" required/>
         </div>
+        <div class="form-group">
+            <label>Joined Firm Date</label>
+            <input type= "month" class="form-control" name="date" [(ngModel)]="staff.dateJoined" required/>
+        </div>
+        
         <button  type="submit" class="btn btn-primary" [class.btn-warning]="editing">
             {{editing ? "Save" : "Create"}}
         </button>

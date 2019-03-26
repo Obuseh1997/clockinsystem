@@ -14,21 +14,21 @@
                <tbody>
                    <tr *ngFor="let staff of staffs" class="m-1 p-1 bg-light">
                         <td>
-                            {{staff.name}}  
+                            {{staff.firstName}}  
                         </td>
                         <td>
                                 {{staff.department}}
                         </td>
                         <td>
                             <button [disabled]="staff.action" (click)="timeIn(staff)">Click</button>
-                            <span *ngIf="staff.time">
-                                Time: {{staff.time | date: 'shortTime'}}
+                            <span *ngIf="staff.time_in">
+                                Time: {{staff.time_in | date: 'shortTime'}}
                             </span>
                         </td>
                         <td>
                             <button [disabled]="staff.actions" (click)="timeOut(staff)">Click</button>
-                            <span *ngIf="staff.times">
-                                Time: {{staff.times | date: 'shortTime'}}
+                            <span *ngIf="staff.time_out">
+                                Time: {{staff.time_out | date: 'shortTime'}}
                             </span>
                         </td>
                     </tr>
