@@ -89,7 +89,6 @@ loginAdmin(username, password) {
         { headers: headerTxt }
     ) 
         .then(response =>{
-            
             console.log('here we are');
             console.log(response);
         }
