@@ -7,6 +7,10 @@ export class AuthService {
 
     constructor(private datasource: RestDataSource) {}
 
+    logIn(username: string, password: string)  {
+        return this.datasource.loginAdmin(username, password);
+    }
+
     authenticate(username: string, password: string): Observable<boolean> {
         return this.datasource.authenticate(username, password);
     }

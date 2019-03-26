@@ -9,9 +9,7 @@ import { Login } from "./auth.model"
 
 const PROTOCOL = "http";
 const PORT = 3500;
-const httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
-  };
+
    
 
 
@@ -71,34 +69,35 @@ return this.http.get<Staff[]>(this.baseUrl + "staffs");
 }
 
 
-loginAdmin(username: string, password: string): Observable<Login> {
-    return this.http.post<Login>('http://localhost:8080/api/admin/admin_login.php',
-                                  {username, password},
-                                  httpOptions)
-          .pipe(
-              tap(data=> console.log('logged in ', data)),
-              catchError(this.handleError<Login>('loginAdmin'))
-          );
-}
-
-// loginAdmin(username, password) {
-//     console.log("Hello World: "+ username  + password);
-
-//     let headerText = {'Content-Type': 'application/json'};
-
-//     axios.post('http://192.168.1.29/biometric%20system/admin/admin_login.php', 
-//     {username, password}, 
-//         { headers: headerText }
-//     ) 
-//         .then(response =>{
-//             console.log('here we are');
-//             console.log(response);
-//         }
-//         ).catch(error=>{
-//             console.log(error);
-//         });
-
+// loginAdmin(username: string, password: string): Observable<Login> {
+//     return this.http.post<Login>('http://localhost:8080/api/admin/admin_login.php',
+//                                   {username, password},
+//                                   httpOptions)
+//           .pipe(
+//               tap(data=> console.log('logged in ', data)),
+//               catchError(this.handleError<Login>('loginAdmin'))
+//           );
 // }
+
+loginAdmin(username, password) {
+    console.log("Hello World: "+ username  + password);
+
+    let headerTxt = { 'Content-Type': 'application/json' };
+
+    axios.post('http://localhost:8080/api/admin/admin_login.php', 
+    {username, password}, 
+        { headers: headerTxt }
+    ) 
+        .then(response =>{
+            
+            console.log('here we are');
+            console.log(response);
+        }
+        ).catch(error=>{
+            console.log(error);
+        });
+
+}
 
 authenticate(user: string, pass: string): Observable<boolean> {
     return this.http.post<any>(this.baseUrl + "login", {
@@ -124,21 +123,21 @@ deleteStaff(id: number): Observable<Staff> {
          this.getOptions());
 }
 
- private handleError<T> (operation = 'operation', result?: T) {
-        return (error: any): Observable<T> => {
+//  private handleError<T> (operation = 'operation', result?: T) {
+//         return (error: any): Observable<T> => {
        
-          // TODO: send the error to remote logging infrastructure
-          console.error(error); // log to console instead
+//           // TODO: send the error to remote logging infrastructure
+//           console.error(error); // log to console instead
        
-          // TODO: better job of transforming error for user consumption
-          console.log(`${operation} failed: ${error.message}`);
+//           // TODO: better job of transforming error for user consumption
+//           console.log(`${operation} failed: ${error.message}`);
        
-          // Let the app keep running by returning an empty result.
-          return of(result as T);
-    };
+//           // Let the app keep running by returning an empty result.
+//           return of(result as T);
+//     };
 
 
-}
+// }
 
 private getOptions() {
     return {
