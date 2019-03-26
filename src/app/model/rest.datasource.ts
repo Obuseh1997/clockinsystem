@@ -100,14 +100,14 @@ loginAdmin(username: string, password: string): Observable<Login> {
 
 // }
 
-// authenticate(user: string, pass: string): Observable<boolean> {
-//     return this.http.post<any>(this.baseUrl + "login", {
-//     name: user, password: pass
-//     }).pipe(map(response => {
-//     this.auth_token = response.success ? response.token : null;
-//     return response.success;
-//     }));
-//     }
+authenticate(user: string, pass: string): Observable<boolean> {
+    return this.http.post<any>(this.baseUrl + "login", {
+    name: user, password: pass
+    }).pipe(map(response => {
+    this.auth_token = response.success ? response.token : null;
+    return response.success;
+    }));
+    }
 
 saveStaff(staff: Staff): Observable<Staff> {
     return this.http.post<Staff>(this.baseUrl + "staffs",
