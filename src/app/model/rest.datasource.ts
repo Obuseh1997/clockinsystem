@@ -6,6 +6,7 @@ import { map, catchError, tap } from "rxjs/operators";
 import { HttpHeaders } from "@angular/common/http";
 import axios from "axios";
 import { Login } from "./auth.model"
+import { reject } from 'q';
 
 const PROTOCOL = "http";
 const PORT = 3500;
@@ -81,23 +82,24 @@ return this.http.get<Staff[]>(this.baseUrl + "staffs");
 
 loginAdmin(username, password) {
     console.log("Hello World: "+ username  + password);
-
+ 
     let headerTxt = { 'Content-Type': 'application/json' };
-
-    axios.post('http://localhost:8080/api/admin/admin_login.php', 
-    {username, password}, 
+    return new Promise((resolve,reject) => {
+       axios.post('http://localhost:8080/api/admin/admin_login.php',
+    {username, password},
         { headers: headerTxt }
-    ) 
+    )
         .then(response =>{
             console.log('here we are');
             console.log(response);
+            resolve(response);
         }
         ).catch(error=>{
             console.log(error);
+            reject(error);
         });
-
-}
-
+    });
+ }
 authenticate(user: string, pass: string): Observable<boolean> {
     return this.http.post<any>(this.baseUrl + "login", {
     name: user, password: pass
