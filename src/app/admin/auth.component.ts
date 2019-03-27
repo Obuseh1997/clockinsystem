@@ -23,14 +23,11 @@ export class AuthComponent {
                  response => {
                     if (response) {
                          this.router.navigateByUrl("/admin/main");
-                       } else
-                       this.errorMessage = "Invalid Username/Password"
+                       } 
                    }).catch(error=>{
                        console.log(error);
-                       this.errorMessage = error.message || "Something went wrong. Please try again.";       });
-              } else {
-                  this.errorMessage = "Username or Password Required";
-            }
+                       this.errorMessage = error.message || "Something went wrong. Please try again."});
+              } 
             }
  
 }
