@@ -21,7 +21,7 @@ export class AuthComponent {
      // perform authentication
      this.datasource.loginAdmin(this.username, this.password)
        return(response => {
-            if (response.success) {
+            if (response) {
               this.router.navigateByUrl("/admin/main");
             } else
             this.errorMessage = "Invalid Username/Password"
