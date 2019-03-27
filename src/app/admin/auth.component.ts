@@ -19,7 +19,7 @@ export class AuthComponent {
      authenticate(form: NgForm){
                 if (form.valid) {
                 // perform authentication
-                this.datasource.loginAdmin(this.username, this.password)
+                this.auth.logIn(this.username, this.password)
                 return(response => {
                   if (response) {
                     this.router.navigateByUrl("/admin/main");
