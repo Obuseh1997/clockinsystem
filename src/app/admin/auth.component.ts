@@ -16,18 +16,19 @@ export class AuthComponent {
               private auth: AuthService,
               private datasource: RestDataSource) {}
 
-     authenticate(form: NgForm){
+              authenticate(form: NgForm){
                 if (form.valid) {
                 // perform authentication
-                this.datasource.loginAdmin(this.username, this.password)
-                return(response => {
-                  if (response) {
-                    this.router.navigateByUrl("/admin/main");
-                  } else
-                  this.errorMessage = "Invalid Username/Password"
-              })
-         } else {
-             this.errorMessage = "Username or Password Required";
-       }
-       }
+                this.datasource.loginAdmin(this.username, this.password).then(
+                 response => {
+                       if (response) {
+                         this.router.navigateByUrl("/admin/main");
+                       }
+                   }).catch(error=>{
+                       console.log(error);
+                       this.errorMessage = error.message || "Something went wrong. Please try again.";});
+              } else {
+                  this.errorMessage = "Username or Password Required";
+            }
+            }
       } 
