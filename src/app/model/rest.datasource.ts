@@ -79,27 +79,26 @@ return this.http.get<Staff[]>(this.baseUrl + "staffs");
 //           );
 // }
 
-loginAdmin(username, password) {
+loginAdmin(username, password, callback) {
     console.log("Hello World: "+ username  + password);
  
     let headerTxt = { 'Content-Type': 'application/json' };
-    
-    axios.post('http://localhost/api/admin/admin_login.php',
+ 
+    axios.post('http://localhost:8080/api/admin/admin_login.php',
     {username, password},
         { headers: headerTxt }
     )
         .then(response =>{
-            console.log("Hello World: "+ username  + password);
             console.log('here we are');
             console.log(response);
-            
+                callback(response);
         }
         ).catch(error=>{
             console.log(error);
-            
+        callback(error);
         });
-    
- }
+ 
+ } 
 authenticate(user: string, pass: string): Observable<boolean> {
     return this.http.post<any>(this.baseUrl + "login", {
     name: user, password: pass
