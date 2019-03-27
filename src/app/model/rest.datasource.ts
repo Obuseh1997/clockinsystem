@@ -5,8 +5,7 @@ import { Staff } from "./staff.model";
 import { map, catchError, tap } from "rxjs/operators";
 import { HttpHeaders } from "@angular/common/http";
 import axios from "axios";
-import { Login } from "./auth.model"
-import { reject } from 'q';
+
 
 const PROTOCOL = "http";
 const PORT = 3500;
@@ -90,6 +89,7 @@ loginAdmin(username, password) {
         { headers: headerTxt }
     )
         .then(response =>{
+            console.log("Hello World: "+ username  + password);
             console.log('here we are');
             console.log(response);
             
