@@ -11,7 +11,7 @@ import { StaffEditorComponent } from "./staffEditor.component";
 let routing = RouterModule.forChild([
 { path: "auth", component: AuthComponent },
 { 
-    path: "main", component: AdminComponent, canActivate: [AuthGuard],
+    path: "main", component: AdminComponent, 
     children: [
         { path: "staffs/:mode/:id", component: StaffEditorComponent },
         { path: "staffs/:mode", component: StaffEditorComponent },
