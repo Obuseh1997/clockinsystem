@@ -83,19 +83,22 @@ loginAdmin(username, password) {
     console.log("Hello World: "+ username  + password);
  
     let headerTxt = { 'Content-Type': 'application/json' };
-    return new Promise((resolve,reject) => {
-       axios.post('http://localhost/api/admin/admin_login.php',
+    
+    axios.post('http://localhost/api/admin/admin_login.php',
     {username, password},
         { headers: headerTxt }
     )
         .then(response =>{
+            console.log("Hello World: "+ username  + password);
             console.log('here we are');
-            resolve(response);
+            console.log(response);
+            
         }
         ).catch(error=>{
-            reject(error);
+            console.log(error);
+            
         });
-    });
+    
  }
 authenticate(user: string, pass: string): Observable<boolean> {
     return this.http.post<any>(this.baseUrl + "login", {
@@ -145,4 +148,3 @@ private getOptions() {
     }
 }
 }
-// change

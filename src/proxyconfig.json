@@ -1,6 +1,6 @@
 {
     "/api": {
-        "target": "http://localhost/api/admin/admin_login.php",
+        "target": "http://localhost:8080",
         "secure": false,
         "changeOrigin": true
     }
