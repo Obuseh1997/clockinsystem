@@ -17,7 +17,7 @@ export class DashboardComponent {
     public currentTimeOut = null;
     public chosenStaff = null;
     public admin = null;
-    
+    public report = null;
    
 
     
@@ -68,6 +68,11 @@ export class DashboardComponent {
     goToAdmin() {
         this.admin();
         this.router.navigateByUrl("/admin");
+    }
+
+    goToReports() {
+        this.report();
+        this.router.navigateByUrl('/reports');
     }
 
    

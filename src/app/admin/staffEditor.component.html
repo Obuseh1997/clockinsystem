@@ -2,40 +2,75 @@
      [class.text-dark]="editing">
      <h5>{{editing ? "Edit" : "Create"}} Staff</h5> 
      </div>
-    <form novalidate #form="ngForm" (ngSubmit)="save(form)">
+    <form  #form="ngForm" (ngSubmit)="save(form)">
         <div class="form-group" >
             <label>First Name</label> 
-            <input class="form-control" name="First name" [(ngModel)]="staff.firstName" />
+            <input class="form-control" name="First name" [(ngModel)]="staff.firstname" />
         </div>
         <div class="form-group">
             <label>Last Name</label>
-            <input class="form-control" name="Last Name" [(ngModel)]="staff.lastName" required="required"/>
+            <input class="form-control" name="Last Name" [(ngModel)]="staff.lastname" required="required"/>
         </div>
         <div class="form-group">
             <label>Middle Name</label>
-            <input class="form-control" name="Last Name" [(ngModel)]="staff.middleName" required/>
+            <input class="form-control" name="Last Name" [(ngModel)]="staff.middlename" required/>
         </div>
         <div class="form-group">
             <label>Date of Birth</label>
             <input type="date" class="form-control" name="Date of Birth" [(ngModel)]="staff.dob" required/>
         </div>
         <div class="form-group">
+          <label>Gender</label>
+         <select class="form-control" [(ngModel)]="staff.gender" name="Gender">
+          <option>Male</option>
+            <option>Female</option>
+            </select>
+         </div>
+         <div class="form-group">
+                <label>Marital Status</label>
+               <select class="form-control" [(ngModel)]="staff.marital" name="Marital Status">
+                <option>Married</option>
+                  <option>Single</option>
+                  </select>
+               </div>
+         <div class="form-group">
             <label>Department</label>
-            <input  class="form-control" name="department" [(ngModel)]="staff.department" required/>
-        </div>
-        <div class="form-group">
-            <label>Gender</label>
-            <input type="gender" class="form-control" name="gender" [(ngModel)]="staff.gender" required/> 
+            <select class="form-control" [(ngModel)]="staff.department" name="Department">
+            <option *ngFor="let dep of departments">{{dep}}</option>
+        </select>
         </div>
         <div class="form-group">
             <label>Role</label>
             <input class="form-control" name="role" [(ngModel)]="staff.role" required/>
         </div>
         <div class="form-group">
+                <label>Address</label>
+                <input class="form-control" name="address" [(ngModel)]="staff.address" required/>
+            </div>
+        <div class="form-group">
+                <label>Phone Number</label>
+                <input class="form-control" name="phone number" type="number" min=10 max=11 [(ngModel)]="staff.phone" required/>
+            </div>
+        <div class="form-group">
             <label>Joined Firm Date</label>
-            <input type= "month" class="form-control" name="date" [(ngModel)]="staff.dateJoined" required/>
+            <input type= "date" class="form-control" name="joined Firm Date" [(ngModel)]="staff.joinedDate" required/>
         </div>
-        
+        <div class="form-group">
+                <label>Employment Type</label>
+               <select class="form-control" [(ngModel)]="staff.employmentType" name="Employment Type">
+                <option>Contract</option>
+                  <option>Full-Time</option>
+                  </select>
+       </div>
+       <div class="form-group">
+            <label>Created By</label>
+           <select class="form-control" [(ngModel)]="staff.createdBy" name="Created By">
+            <option>HR</option>
+              <option>Management</option>
+              <option>Technology</option>
+              <option>Infrastructure</option>
+              </select>
+   </div>
         <button  type="submit" class="btn btn-primary" [class.btn-warning]="editing">
             {{editing ? "Save" : "Create"}}
         </button>

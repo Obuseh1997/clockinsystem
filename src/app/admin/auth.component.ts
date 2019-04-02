@@ -16,11 +16,26 @@ export class AuthComponent {
               private auth: AuthService,
               private datasource: RestDataSource) {}
 
+              // authenticate(form: NgForm) {
+              //   if (form.valid) {
+              //   this.datasource.loginAdmin(this.username, this.password, respo)
+              //   .subscribe(response => {
+              //   if (response) {
+              //   this.router.navigateByUrl("/admin/main");
+              //   }
+              //   this.errorMessage = "Authentication Failed";
+              //   })
+              //   } else {
+              //   this.errorMessage = "Form Data Invalid";
+              //   }
+              //   }
+              //   }
+
               authenticate(form: NgForm){
                 if (form.valid) {
                   // perform authentication
                   this.datasource.loginAdmin(this.username, this.password, response => {
-                  if (response) {
+                  if (response.success = true) {
                     this.router.navigateByUrl("/admin/main");
                   } else
                     this.errorMessage = "Invalid Username/Password"
@@ -29,4 +44,21 @@ export class AuthComponent {
                   this.errorMessage = "Username or Password Required";
                 }
               }
-      } 
+        
+        // loginUser(form: NgForm) {
+        //   if(form.valid) {
+        //     this.auth.getUserDetails(this.username, this.password).subscribe(data => {
+        //       if(data.success ) {
+        //         //redirect url
+        //         this.router.navigateByUrl("/admin/main");
+        //       } else {
+        //          console.log("Wrong Password")
+        //       }
+        //            })
+        //   }
+        //   else {
+        //     this.errorMessage = "Username or Password Required";
+        //   }
+        // }
+            }
+      

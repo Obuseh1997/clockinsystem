@@ -9,7 +9,10 @@ import axios from "axios";
 
 const PROTOCOL = "http";
 const PORT = 3500;
-
+interface myData {
+    success: boolean,
+    message: string
+}
    
 
 
@@ -84,14 +87,15 @@ loginAdmin(username, password, callback) {
  
     let headerTxt = { 'Content-Type': 'application/json' };
  
-    axios.post('http://localhost:8080/api/admin/admin_login.php',
+    axios.post<myData>('http://localhost:8080/api/admin/admin_login.php',
     {username, password},
         { headers: headerTxt }
     )
         .then(response =>{
             console.log('here we are');
             console.log(response);
-                callback(response);
+             callback(response);
+             
         }
         ).catch(error=>{
             console.log(error);
@@ -100,27 +104,28 @@ loginAdmin(username, password, callback) {
  
  } 
 authenticate(user: string, pass: string): Observable<boolean> {
-    return this.http.post<any>(this.baseUrl + "login", {
-    name: user, password: pass
-    }).pipe(map(response => {
+
+    return this.http.post<any>('http://localhost:8080/api/admin/admin_login.php', {
+    name: user, password: pass},
+    this.newOptions()).pipe(map(response => {
     this.auth_token = response.success ? response.token : null;
     return response.success;
     }));
     }
 
 saveStaff(staff: Staff): Observable<Staff> {
-    return this.http.post<Staff>(this.baseUrl + "staffs",
-       staff, this.getOptions());
+    return this.http.post<Staff>("http://localhost:8080/api/dashboard/add_employee.php",
+       staff, this.newOptions());
 }
 
 updateStaff(staff): Observable<Staff> {
-    return this.http.put<Staff>(`${this.baseUrl}/staffs/${staff.id}`,
-        staff, this.getOptions());
+    return this.http.put<Staff>("http://localhost:8080/api/dashboard/add_employee.php",
+        staff, this.newOptions());
 }
 
 deleteStaff(id: number): Observable<Staff> { 
-    return this.http.delete<Staff>(`${this.baseUrl}/staffs/${id}`,
-         this.getOptions());
+    return this.http.delete<Staff>(`${this.baseUrl}staffs/${id}`,
+      this.newOptions());
 }
 
 //  private handleError<T> (operation = 'operation', result?: T) {
@@ -143,6 +148,13 @@ private getOptions() {
     return {
         headers: new HttpHeaders({
             "Authorization": `Bearer <${this.auth_token}>`
+        })
+    }
+}
+private newOptions() {
+    return {
+        headers: new HttpHeaders({
+            "Content-type": 'application/json'
         })
     }
 }

@@ -2,22 +2,20 @@ import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, RouterStateSnapshot, 
            Router } from "@angular/router";
 import { AuthService } from "../model/auth.service";
+import { Observable } from 'rxjs';
+
 
 @Injectable()
 export class AuthGuard {
 
     constructor(private router: Router,
-                private auth: AuthService) { }
+                private auth: AuthService) { 
 
-    canActivate(route: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot) {
+                }
 
-            if (!this.auth.authenticated) {
-                this.router.navigateByUrl("/admin/auth");
-                return false;
-            }
-            return true;
-            
-            
+    canActivate(
+        next: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+            return  this.auth.isLoggedin ;
         }
 }

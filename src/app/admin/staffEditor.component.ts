@@ -10,6 +10,7 @@ import { StaffRepository } from "../model/staff.repository";
 export class StaffEditorComponent {
     editing: boolean = false;
     staff: Staff = new Staff();
+    public selectedDepartment = null;
 
     constructor(private repository: StaffRepository,
                 private router: Router,
@@ -22,6 +23,15 @@ export class StaffEditorComponent {
 
             }
 
+                }
+                get staffs(): Staff[] {
+                    return this.repository.getStaffs(this.selectedDepartment);
+                }
+                get departments(): string[] {
+                    return this.repository.getDepartments();
+                } 
+                changeDepartment(newDepartment?: string) {
+                    this.selectedDepartment = newDepartment;
                 }
             save(form: NgForm) {
                 this.repository.saveStaff(this.staff);
