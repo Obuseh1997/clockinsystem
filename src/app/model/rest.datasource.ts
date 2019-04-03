@@ -88,7 +88,7 @@ loginAdmin(username, password, callback) {
  
     let headerTxt = { 'Content-Type': 'application/json' };
  
-    axios.post<myData>('http://localhost:8080/api/admin/admin_login.php',
+    axios.post<myData>('http://localhost/api/admin/admin_login.php',
     {username, password},
     {headers: headerTxt}
 )
@@ -106,30 +106,30 @@ loginAdmin(username, password, callback) {
         });
  
  } 
- getUserDetails(username, password)  {
-    // post details to API server and return user info if correct
-    return this.http.post('http://localhost:8080/api/admin/admin_login.php',
-                           {username,
-                            password
-                         }, this.newOptions());
-}
-authenticate(user: string, pass: string): Observable<boolean> {
+//  getUserDetails(username, password)  {
+//     // post details to API server and return user info if correct
+//     return this.http.post('http://localhost:8080/api/admin/admin_login.php',
+//                            {username,
+//                             password
+//                          }, this.newOptions());
+// }
+// authenticate(user: string, pass: string): Observable<boolean> {
 
-    return this.http.post<any>('http://localhost:8080/api/admin/admin_login.php', {
-    name: user, password: pass},
-    this.newOptions()).pipe(map(response => {
-    this.auth_token = response.success ? response.token : null;
-    return response.success;
-    }));
-    }
+//     return this.http.post<any>('http://localhost:8080/api/admin/admin_login.php', {
+//     name: user, password: pass},
+//     this.newOptions()).pipe(map(response => {
+//     this.auth_token = response.success ? response.token : null;
+//     return response.success;
+//     }));
+//     }
 
 saveStaff(staff: Staff): Observable<Staff> {
-    return this.http.post<Staff>("http://localhost:8080/api/dashboard/add_employee.php",
+    return this.http.post<Staff>("http://localhost/api/dashboard/add_employee.php",
        staff, this.newOptions());
 }
 
 updateStaff(staff): Observable<Staff> {
-    return this.http.put<Staff>("http://localhost:8080/api/dashboard/add_employee.php",
+    return this.http.put<Staff>("http://localhost/api/dashboard/add_employee.php",
         staff, this.newOptions());
 }
 
