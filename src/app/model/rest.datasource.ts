@@ -5,6 +5,7 @@ import { Staff } from "./staff.model";
 import { map, catchError, tap } from "rxjs/operators";
 import { HttpHeaders } from "@angular/common/http";
 import axios from "axios";
+import { Data } from '@angular/router';
 
 
 const PROTOCOL = "http";
@@ -89,20 +90,29 @@ loginAdmin(username, password, callback) {
  
     axios.post<myData>('http://localhost:8080/api/admin/admin_login.php',
     {username, password},
-        { headers: headerTxt }
-    )
+    {headers: headerTxt}
+)
         .then(response =>{
             console.log('here we are');
             console.log(response);
-             callback(response);
+            callback(response);
+             
              
         }
         ).catch(error=>{
             console.log(error);
-        callback(error);
+            callback(error);
+        
         });
  
  } 
+ getUserDetails(username, password)  {
+    // post details to API server and return user info if correct
+    return this.http.post('http://localhost:8080/api/admin/admin_login.php',
+                           {username,
+                            password
+                         }, this.newOptions());
+}
 authenticate(user: string, pass: string): Observable<boolean> {
 
     return this.http.post<any>('http://localhost:8080/api/admin/admin_login.php', {
@@ -154,7 +164,7 @@ private getOptions() {
 private newOptions() {
     return {
         headers: new HttpHeaders({
-            "Content-type": 'application/json'
+            "Content-type": "application/json"
         })
     }
 }

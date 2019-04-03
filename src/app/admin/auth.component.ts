@@ -34,25 +34,26 @@ export class AuthComponent {
               authenticate(form: NgForm){
                 if (form.valid) {
                   // perform authentication
-                  this.datasource.loginAdmin(this.username, this.password, response => {
-                  if (response.success = true) {
-                    this.router.navigateByUrl("/admin/main");
-                  } else
-                    this.errorMessage = "Invalid Username/Password"
-                  });
-                } else {
-                  this.errorMessage = "Username or Password Required";
+                  this.datasource.loginAdmin(this.username, this.password,response => {
+                    if (response.status === 200) {
+                      this.router.navigateByUrl("/admin/main");
+                    } else
+                      this.errorMessage = "Invalid Username/Password"
+                    });
+                  } else {
+                    this.errorMessage = "Username or Password Required";
+                  }
                 }
-              }
+              
         
         // loginUser(form: NgForm) {
         //   if(form.valid) {
-        //     this.auth.getUserDetails(this.username, this.password).subscribe(data => {
-        //       if(data.success ) {
+        //     this.datasource.getUserDetails(this.username, this.password).subscribe(data => {
+        //       if(data) {
         //         //redirect url
         //         this.router.navigateByUrl("/admin/main");
         //       } else {
-        //          console.log("Wrong Password")
+        //          this.errorMessage = "Invalid Username/Password"
         //       }
         //            })
         //   }
