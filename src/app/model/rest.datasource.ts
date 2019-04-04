@@ -69,7 +69,7 @@ signOut(user_id) {
 
 
 getStaffs(): Observable<Staff[]> {
-return this.http.get<Staff[]>(this.baseUrl + "staffs"); 
+return this.http.get<Staff[]>('http://localhost:8080/api/dashboard/dashboard.php'); 
 }
 
 
@@ -134,7 +134,7 @@ updateStaff(staff): Observable<Staff> {
 }
 
 deleteStaff(id: number): Observable<Staff> { 
-    return this.http.delete<Staff>(`${this.baseUrl}staffs/${id}`,
+    return this.http.delete<Staff>("http://localhost:8080/api/dashboard/add_employee.php/${id}",
       this.newOptions());
 }
 

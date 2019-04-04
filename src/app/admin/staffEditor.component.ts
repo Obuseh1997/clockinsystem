@@ -33,6 +33,7 @@ export class StaffEditorComponent {
                 changeDepartment(newDepartment?: string) {
                     this.selectedDepartment = newDepartment;
                 }
+                
             save(form: NgForm) {
                 this.repository.saveStaff(this.staff);
                 this.router.navigateByUrl("/admin/main/staffs");

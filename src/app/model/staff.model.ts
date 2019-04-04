@@ -14,7 +14,6 @@ export class Staff {
         public department?: string,
         public role?: string,
         public employmentType?: string,
-        public createdBy?: string,
         public time_in?: null,
         public time_out?: null) { }
 }
