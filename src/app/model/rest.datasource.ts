@@ -88,7 +88,7 @@ loginAdmin(username, password, callback) {
  
     let headerTxt = { 'Content-Type': 'application/json' };
  
-    axios.post<myData>('http://localhost/api/admin/admin_login.php',
+    axios.post<myData>('http://localhost:8080/api/admin/admin_login.php',
     {username, password},
     {headers: headerTxt}
 )
@@ -124,12 +124,12 @@ loginAdmin(username, password, callback) {
 //     }
 
 saveStaff(staff: Staff): Observable<Staff> {
-    return this.http.post<Staff>("http://localhost/api/dashboard/add_employee.php",
+    return this.http.post<Staff>("http://localhost:8080/api/dashboard/add_employee.php",
        staff, this.newOptions());
 }
 
 updateStaff(staff): Observable<Staff> {
-    return this.http.put<Staff>("http://localhost/api/dashboard/add_employee.php",
+    return this.http.put<Staff>("http://localhost:8080/api/dashboard/add_employee.php",
         staff, this.newOptions());
 }
 

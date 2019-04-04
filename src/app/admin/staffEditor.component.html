@@ -17,7 +17,7 @@
         </div>
         <div class="form-group">
             <label>Date of Birth</label>
-            <input type="date" class="form-control" name="Date of Birth" [(ngModel)]="staff.dob" required/>
+            <input type="date" class="form-control" name="Date of Birth" [(ngModel)]="staff.dob" max="01-01-2001" required/>
         </div>
         <div class="form-group">
           <label>Gender</label>
@@ -56,11 +56,11 @@
             </div>
         <div class="form-group">
                 <label>Phone Number</label>
-                <input class="form-control" name="phone number" type="number" min=10 max=11 [(ngModel)]="staff.phone" required/>
+                <input class="form-control" name="phone number" type="number"  max="11" [(ngModel)]="staff.phone" required/>
             </div>
         <div class="form-group">
             <label>Joined Firm Date</label>
-            <input type= "date" class="form-control" name="joined Firm Date" [(ngModel)]="staff.joinedDate" required/>
+            <input type= "date" class="form-control" name="joined Firm Date" [(ngModel)]="staff.joinedDate" min="01-01-2012" required/>
         </div>
         <div class="form-group">
                 <label>Employment Type</label>
@@ -69,15 +69,6 @@
                   <option>Full-Time</option>
                   </select>
        </div>
-       <div class="form-group">
-            <label>Created By</label>
-           <select class="form-control" [(ngModel)]="staff.createdBy" name="Created By">
-            <option>HR</option>
-              <option>Management</option>
-              <option>Technology</option>
-              <option>Infrastructure</option>
-              </select>
-   </div>
         <button  type="submit" class="btn btn-primary" [class.btn-warning]="editing">
             {{editing ? "Save" : "Create"}}
         </button>
