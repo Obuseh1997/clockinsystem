@@ -18,6 +18,7 @@ export class DashboardComponent {
     public chosenStaff = null;
     public admin = null;
     public report = null;
+    public staffLogin = null;
    
 
     
@@ -62,7 +63,12 @@ export class DashboardComponent {
     changeDepartment(newDepartment?: string) {
         this.selectedDepartment = newDepartment;
     }
+  
+    goToStaffLogin() {
+        this.staffLogin();
+        this.router.navigateByUrl("/login");
 
+    }
    
     
     goToAdmin() {

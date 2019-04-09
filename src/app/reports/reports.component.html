@@ -21,14 +21,15 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    <form #form="ngForm" (ngSubmit)="pickDate()">
     <div class="form-inline float-left mr-1">
-    <div>
-        <label>Select Date</label>
-        <input type="date" name="selectDate" class="form-control">
-        <button class="btn btn-block btn-primary m-t-3" [type]="submit" routerLink="/dashboard">
-            Go back
-        </button>
-    </div>
+            <div class="form-group">
+                    <label>Select Date</label>
+                    <input type= "date" class="form-control" name="dateSelected" [(ngModel)]="dateSelected" required/>
+                </div>  
 </div>
+</form>
+<button class="btn btn-block btn-primary m-t-3" [type]="submit" routerLink="/dashboard">
+    Go back
+</button>
 </div>

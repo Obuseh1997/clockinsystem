@@ -16,21 +16,6 @@ export class AuthComponent {
               private auth: AuthService,
               private datasource: RestDataSource) {}
 
-              // authenticate(form: NgForm) {
-              //   if (form.valid) {
-              //   this.datasource.loginAdmin(this.username, this.password, respo)
-              //   .subscribe(response => {
-              //   if (response) {
-              //   this.router.navigateByUrl("/admin/main");
-              //   }
-              //   this.errorMessage = "Authentication Failed";
-              //   })
-              //   } else {
-              //   this.errorMessage = "Form Data Invalid";
-              //   }
-              //   }
-              //   }
-
               authenticate(form: NgForm){
                 if (form.valid) {
                   // perform authentication
@@ -45,21 +30,5 @@ export class AuthComponent {
                   }
                 }
               
-        
-        // loginUser(form: NgForm) {
-        //   if(form.valid) {
-        //     this.datasource.getUserDetails(this.username, this.password).subscribe(data => {
-        //       if(data) {
-        //         //redirect url
-        //         this.router.navigateByUrl("/admin/main");
-        //       } else {
-        //          this.errorMessage = "Invalid Username/Password"
-        //       }
-        //            })
-        //   }
-        //   else {
-        //     this.errorMessage = "Username or Password Required";
-        //   }
-        // }
             }
       

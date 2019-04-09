@@ -11,6 +11,7 @@ export class StaffEditorComponent {
     editing: boolean = false;
     staff: Staff = new Staff();
     public selectedDepartment = null;
+    public errorMessage: string;
 
     constructor(private repository: StaffRepository,
                 private router: Router,
@@ -22,8 +23,16 @@ export class StaffEditorComponent {
                     repository.getStaff(activeRoute.snapshot.params["id"]));
 
             }
-
                 }
+
+                saveEmployee(form: NgForm) {
+                     
+                        this.repository.saveStaff(this.staff);
+                         this.router.navigateByUrl("/admin/main/staffs");
+                    
+                    
+                }
+
                 get staffs(): Staff[] {
                     return this.repository.getStaffs(this.selectedDepartment);
                 }
@@ -34,8 +43,5 @@ export class StaffEditorComponent {
                     this.selectedDepartment = newDepartment;
                 }
                 
-            save(form: NgForm) {
-                this.repository.saveStaff(this.staff);
-                this.router.navigateByUrl("/admin/main/staffs");
-            }
+           
 }

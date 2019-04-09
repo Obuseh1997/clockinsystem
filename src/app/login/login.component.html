@@ -1,0 +1,21 @@
+<div class="bg-info p-2 text-center text-white">
+    <h3>ACTIVEDGE STAFF</h3>
+    </div>
+    <div class="bg-danger mt-2 p-2 text-center text-white"
+    *ngIf="errorMessage != null">
+    {{errorMessage}}
+    </div>
+    <div class="p-2">
+    <form #form="ngForm" (ngSubmit)="authenticate(form)">
+    <div class="form-group">
+    <label>PIN:</label>
+    <input type="number" class="form-control" name="pin"
+    [(ngModel)]="pin" required />
+    </div>
+    
+    <div class="text-center">
+        <button class="btn btn-secondary m-1" routerLink="/">Go back</button>
+        <button class="btn btn-primary m-1" type="submit" name="submit">Log In</button>
+        </div>
+        </form>
+        </div>

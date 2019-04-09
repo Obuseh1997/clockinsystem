@@ -31,6 +31,8 @@ this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
  
 }
 
+
+
 signIn(user_id) {
     console.log("Hello World: "+ user_id);
 
@@ -64,24 +66,45 @@ signOut(user_id) {
         }
         ).catch(error=>{
             console.log(error);
-        });
+        }); 
 }
 
 
 getStaffs(): Observable<Staff[]> {
-return this.http.get<Staff[]>('http://localhost:8080/api/dashboard/dashboard.php'); 
+return this.http.get<Staff[]>('http://localhost:8080/api/dashboard/dashboard.php',
+                               this.newOptions())
+                .pipe(
+                    tap(data=> console.log('logged in ', data)),
+                    catchError(this.handleError<Staff[]>('getStaffs'))
+                ); 
 }
 
+sendDate(dateSelected: Date) {
+    return this.http.post('api',
+                          dateSelected,
+                          this.newOptions())
+                          .pipe(
+                            tap(data=> console.log('logged in ', data)),
+                            catchError(this.handleError('sendDate'))
+                        ); 
 
-// loginAdmin(username: string, password: string): Observable<Login> {
-//     return this.http.post<Login>('http://localhost:8080/api/admin/admin_login.php',
-//                                   {username, password},
-//                                   httpOptions)
-//           .pipe(
-//               tap(data=> console.log('logged in ', data)),
-//               catchError(this.handleError<Login>('loginAdmin'))
-//           );
-// }
+}
+
+clockIn(pin: number, callback) {
+    console.log('Hello World' + pin);
+    let headerTxt = { 'Content-Type': 'application/json' };
+
+    axios.post('http://localhost:8080/api/dashboard/employee_auth.php', {pin}, {headers: headerTxt})
+     .then(response =>{
+           console.log(response);
+           callback(response);
+           
+}
+     ).catch(error=>{
+         console.log(error);
+         callback(error);
+     })
+ }
 
 loginAdmin(username, password, callback) {
     console.log("Hello World: "+ username  + password);
@@ -106,61 +129,51 @@ loginAdmin(username, password, callback) {
         });
  
  } 
-//  getUserDetails(username, password)  {
-//     // post details to API server and return user info if correct
-//     return this.http.post('http://localhost:8080/api/admin/admin_login.php',
-//                            {username,
-//                             password
-//                          }, this.newOptions());
-// }
-// authenticate(user: string, pass: string): Observable<boolean> {
 
-//     return this.http.post<any>('http://localhost:8080/api/admin/admin_login.php', {
-//     name: user, password: pass},
-//     this.newOptions()).pipe(map(response => {
-//     this.auth_token = response.success ? response.token : null;
-//     return response.success;
-//     }));
-//     }
 
 saveStaff(staff: Staff): Observable<Staff> {
     return this.http.post<Staff>("http://localhost:8080/api/dashboard/add_employee.php",
-       staff, this.newOptions());
+       staff, this.newOptions())
+       .pipe(
+        tap(data=> console.log('logged in ', data)),
+        catchError(this.handleError<Staff>('saveStaff'))
+    );;
 }
 
 updateStaff(staff): Observable<Staff> {
-    return this.http.put<Staff>("http://localhost:8080/api/dashboard/add_employee.php",
-        staff, this.newOptions());
+    return this.http.put<Staff>("http://localhost:8080/api/dashboard/update_employee.php",
+        staff, this.newOptions())
+        .pipe(
+            tap(data=> console.log('logged in ', data)),
+            catchError(this.handleError<Staff>('updateStaff'))
+        );;
 }
 
 deleteStaff(id: number): Observable<Staff> { 
-    return this.http.delete<Staff>("http://localhost:8080/api/dashboard/add_employee.php/${id}",
-      this.newOptions());
+    return this.http.delete<Staff>("http://localhost:8080/api/dashboard/delete.php/"+ id,
+      this.newOptions())
+      .pipe(
+        tap(data=> console.log('logged in ', data)),
+        catchError(this.handleError<Staff>('deleteStaff'))
+    );;
 }
 
-//  private handleError<T> (operation = 'operation', result?: T) {
-//         return (error: any): Observable<T> => {
+ private handleError<T> (operation = 'operation', result?: T) {
+        return (error: any): Observable<T> => {
        
-//           // TODO: send the error to remote logging infrastructure
-//           console.error(error); // log to console instead
+          // TODO: send the error to remote logging infrastructure
+          console.error(error); // log to console instead
        
-//           // TODO: better job of transforming error for user consumption
-//           console.log(`${operation} failed: ${error.message}`);
+          // TODO: better job of transforming error for user consumption
+          console.log(`${operation} failed: ${error.message}`);
        
-//           // Let the app keep running by returning an empty result.
-//           return of(result as T);
-//     };
+          // Let the app keep running by returning an empty result.
+          return of(result as T);
+    };
 
 
-// }
-
-private getOptions() {
-    return {
-        headers: new HttpHeaders({
-            "Authorization": `Bearer <${this.auth_token}>`
-        })
-    }
 }
+
 private newOptions() {
     return {
         headers: new HttpHeaders({
@@ -168,4 +181,5 @@ private newOptions() {
         })
     }
 }
+
 }

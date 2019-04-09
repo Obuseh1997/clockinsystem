@@ -20,16 +20,10 @@
                                 {{staff.department}}
                         </td>
                         <td>
-                            <button [disabled]="staff.action" (click)="timeIn(staff)">Click</button>
-                            <span *ngIf="staff.time_in">
-                                Time: {{staff.time_in | date: 'shortTime'}}
-                            </span>
+                           {{staff.time_in}}
                         </td>
                         <td>
-                            <button [disabled]="staff.actions" (click)="timeOut(staff)">Click</button>
-                            <span *ngIf="staff.time_out">
-                                Time: {{staff.time_out | date: 'shortTime'}}
-                            </span>
+                            {{staff.time_out}}
                         </td>
                     </tr>
                </tbody>
@@ -46,7 +40,11 @@
                           <button class="btn btn-block btn-primary m-t-3" [type]="submit" routerLink="/reports"> 
                             Reports
                           </button> 
-                        </div>    
+                          <button class="btn btn-block btn-info m-t-3" [type]="submit" routerLink="/login"> 
+                            CLOCK IN
+                          </button> 
+                        </div>  
+                          
                 </div> 
                 
         

@@ -2,6 +2,8 @@ import { Component } from "@angular/core";
 import { Staff} from "../model/staff.model";
 import { StaffRepository } from "../model/staff.repository";
 import axios from "axios";
+import { RestDataSource } from '../model/rest.datasource';
+import { NgForm } from '@angular/forms';
 
 @Component ({
     selector: 'reports',
@@ -9,8 +11,11 @@ import axios from "axios";
 })
 export class ReportsComponent {
     private selectedDepartment = null;
+    public dateSelected: Date;
 
-    constructor(private repository: StaffRepository) {}
+
+    constructor(private repository: StaffRepository,
+                private datasource: RestDataSource) {}
  
     get staffs(): Staff[] {
         return this.repository.getStaffs(this.selectedDepartment);
@@ -26,6 +31,15 @@ export class ReportsComponent {
 displayTimeIn() {
     axios.get('api',  )
 }
-    
-    
+displayTimeOut() {
+    axios.get('api',  )
 }
+
+pickDate(form: NgForm) {
+    if (form.valid) {
+    return this.datasource.sendDate(this.dateSelected)
+    }
+}
+    
+    
+} 

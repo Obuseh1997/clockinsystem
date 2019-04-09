@@ -5,11 +5,14 @@ import { StaffRepository } from "../model/staff.repository";
     templateUrl: "staffTable.component.html"
 })
 export class StaffTableComponent {
+   public selectedDepartment: null;
 
-    constructor(private repository: StaffRepository) { }
+    constructor(private repository: StaffRepository) {
+       
+     }
 
-    getStaffs(): Staff[] {
-        return this.repository.getStaffs();
+    get staffs(): Staff[] {
+        return this.repository.getStaffs(this.selectedDepartment);
     }
 
     deleteStaff(id: number) {

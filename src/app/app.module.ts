@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { RouterModule } from "@angular/router";
 import { DashboardFirstGuard } from "./dashboardFirst.guard";
 import { ReportsComponent } from "./reports/reports.component";
+import { LoginComponent } from "./login/login.component";
+ 
 
 
 
@@ -32,6 +34,14 @@ import { ReportsComponent } from "./reports/reports.component";
         loadChildren: "./admin/admin.module#AdminModule",
         canActivate: [DashboardFirstGuard]
       },
+
+      {
+        path: "login",
+        component: LoginComponent,
+        canActivate: [DashboardFirstGuard]
+      },
+
+    
       { 
         path: "**", redirectTo: "/dashboard" 
       },
