@@ -1,13 +1,13 @@
 import { Component } from "@angular/core";
 import { Staff } from "../model/staff.model";
-import { StaffRepository } from "../model/staff.repository";
+import { AdminRepository } from "../model/admin.repository";
 @Component({
     templateUrl: "staffTable.component.html"
 })
 export class StaffTableComponent {
    public selectedDepartment: null;
 
-    constructor(private repository: StaffRepository) {
+    constructor(private repository: AdminRepository) {
        
      }
 

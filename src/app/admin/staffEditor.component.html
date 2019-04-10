@@ -28,7 +28,7 @@
          </div>
          <div class="form-group">
                 <label>Marital Status</label>
-               <select class="form-control" [(ngModel)]="staff.marital" name="Marital Status">
+               <select class="form-control" [(ngModel)]="staff.marital_status" name="Marital Status">
                 <option>Married</option>
                   <option>Single</option>
                   </select>
@@ -36,35 +36,24 @@
          <div class="form-group">
             <label>Department</label>
             <select class="form-control" [(ngModel)]="staff.department" name="Department">
-            <option>Technology</option>
-            <option>Professional Services</option>
-            <option>Infrastructure</option>
-            <option>Administration</option>
-            <option>Marketing</option>
-            <option>Security</option>
-            <option>Account</option>
-            <option>Project Management</option>
+                <option *ngFor="let dep of departments">{{dep}}</option>
         </select>
         </div>
         <div class="form-group">
-            <label>Role</label>
-            <input class="form-control" name="role" [(ngModel)]="staff.role" required/>
-        </div>
-        <div class="form-group">
                 <label>Address</label>
-                <input class="form-control" name="address" [(ngModel)]="staff.address" required/>
+                <input class="form-control" name="address" [(ngModel)]="staff.home_address" required/>
             </div>
         <div class="form-group">
                 <label>Phone Number</label>
-                <input class="form-control" name="phone number" type="number"  pattern="\d*" maxlength="11" [(ngModel)]="staff.phone" required/>
+                <input class="form-control" name="phone number" type="number"  pattern="\d*" maxlength="11" [(ngModel)]="staff.phone_number" required/>
             </div>
         <div class="form-group">
             <label>Joined Firm Date</label>
-            <input type= "date" class="form-control" name="joined Firm Date" [(ngModel)]="staff.joinedDate" pattern="\d*" min="01-01-2012" required/>
+            <input type= "date" class="form-control" name="joined Firm Date" [(ngModel)]="staff.joinedfirmdate" pattern="\d*" min="01-01-2012" required/>
         </div>
         <div class="form-group">
                 <label>Employment Type</label>
-               <select class="form-control" [(ngModel)]="staff.employmentType" name="Employment Type">
+               <select class="form-control" [(ngModel)]="staff.employment_type" name="Employment Type">
                 <option>Contract</option>
                   <option>Full-Time</option>
                   </select>

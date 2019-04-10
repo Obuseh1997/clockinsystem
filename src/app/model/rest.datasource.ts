@@ -5,7 +5,7 @@ import { Staff } from "./staff.model";
 import { map, catchError, tap } from "rxjs/operators";
 import { HttpHeaders } from "@angular/common/http";
 import axios from "axios";
-import { Data } from '@angular/router';
+import { Department } from "./dep.model"
 
 
 const PROTOCOL = "http";
@@ -78,6 +78,24 @@ return this.http.get<Staff[]>('http://localhost:8080/api/dashboard/dashboard.php
                     catchError(this.handleError<Staff[]>('getStaffs'))
                 ); 
 }
+
+getDepartment(): Observable<Department[]> {
+    return this.http.get<Department[]>('http://localhost:8080/api/dashboard/view_departments.php',
+                                   this.newOptions())
+                    .pipe(
+                        tap(data=> console.log('logged in ', data)),
+                        catchError(this.handleError<Staff[]>('getDepartment'))
+                    ); 
+    }
+
+getStaffInfo(): Observable<Staff[]> {
+    return this.http.get<Staff[]>('http://localhost:8080/api/admin/admin_dashboard.php',
+                                   this.newOptions())
+                    .pipe(
+                        tap(data=> console.log('logged in ', data)),
+                        catchError(this.handleError<Staff[]>('getStaffs'))
+                    ); 
+    }
 
 sendDate(dateSelected: Date) {
     return this.http.post('api',

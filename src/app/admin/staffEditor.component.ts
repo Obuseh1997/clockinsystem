@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { NgForm } from "@angular/forms";
 import { Staff } from "../model/staff.model";
-import { StaffRepository } from "../model/staff.repository";
+import { AdminRepository } from "../model/admin.repository";
 
 @Component({
     templateUrl: "staffEditor.component.html"
@@ -13,7 +13,7 @@ export class StaffEditorComponent {
     public selectedDepartment = null;
     public errorMessage: string;
 
-    constructor(private repository: StaffRepository,
+    constructor(private repository: AdminRepository,
                 private router: Router,
                 activeRoute: ActivatedRoute) {
         
