@@ -2,25 +2,25 @@ import { Injectable } from "@angular/core";
 import { Staff } from "./staff.model";
 //import { StaticDataSource } from "./static.datasource";
 import { RestDataSource } from "./rest.datasource";
-import { Department} from "./dep.model"
+
 
 @Injectable()
 export class AdminRepository {
     private staffs: Staff[] = [];
     private departments: string[] = [];
-    private departmentlist: Department[] = [];
+    
 
     constructor(private dataSource: RestDataSource) {
         dataSource.getStaffInfo().subscribe(data => {
             this.staffs = data;
-            this.departments = data.map(p => p.department)
+            this.departments = data.map(p => p.department_name)
                 .filter((c, index, array) => array.indexOf(c) == index). sort();
         });
     }
 
     getStaffs(department: string = null): Staff[] {
         return this.staffs
-             .filter(p => department == null || department == p.department);
+             .filter(p => department == null || department == p.department_name);
     }
 
     getStaff(id: number): Staff {
@@ -30,7 +30,6 @@ export class AdminRepository {
     getDepartments(): string[] {
         return this.departments;
     }
-
     saveStaff(staff: Staff) {
         if (staff.id == null || staff.id == 0) {
             this.dataSource.saveStaff(staff)

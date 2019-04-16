@@ -18,9 +18,9 @@ export class LoginComponent {
         if (form.valid) {
             this.datasource.clockIn(this.pin,response => {
                 if (response.status === 200) {
-                  this.router.navigateByUrl("/dashboard");
+                  this.router.navigateByUrl("/login/home");
                 } else
-                  this.errorMessage = "Invalid PIN"
+                  this.errorMessage = "Invalid PIN";
                 });
               } else {
                 this.errorMessage = "PIN Required";

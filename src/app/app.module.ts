@@ -37,7 +37,7 @@ import { LoginComponent } from "./login/login.component";
 
       {
         path: "login",
-        component: LoginComponent,
+        loadChildren: './login/login.module#LoginModule',
         canActivate: [DashboardFirstGuard]
       },
 

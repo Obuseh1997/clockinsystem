@@ -74,7 +74,12 @@ getStaffs(): Observable<Staff[]> {
 return this.http.get<Staff[]>('http://localhost:8080/api/dashboard/dashboard.php',
                                this.newOptions())
                 .pipe(
-                    tap(data=> console.log('logged in ', data)),
+                    tap(data=> {
+                        console.log('logged in ', data);
+                        let newData = data;
+                        let lastTime = newData.pop;
+                        console.log(lastTime);
+                    }),
                     catchError(this.handleError<Staff[]>('getStaffs'))
                 ); 
 }

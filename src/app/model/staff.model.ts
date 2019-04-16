@@ -10,10 +10,10 @@ export class Staff {
         public marital_status?: string,
         public home_address?: string,
         public phone_number?: number,
-        public joinedfirnate?: Date,
-        public department?: string,
+        public joinedfirmdate?: Date,
+        public department_name?: string,
         public employment_type?: string,
         public pin?: number,
-        public time_in?: null,
-        public time_out?: null) { }
+        public time_in?: string,
+        public time_out?: string) { }
 }

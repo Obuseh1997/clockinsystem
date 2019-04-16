@@ -7,19 +7,24 @@ import { RestDataSource } from "./rest.datasource";
 export class StaffRepository {
     private staffs: Staff[] = [];
     private departments: string[] = [];
+   
 
     constructor(private dataSource: RestDataSource) {
         dataSource.getStaffs().subscribe(data => {
             this.staffs = data;
-            this.departments = data.map(p => p.department)
-                .filter((c, index, array) => array.indexOf(c) == index). sort();
+            
+            this.departments = data.map(user => user.department_name)
+                .filter((deptName, index, array) => array.indexOf(deptName) == index).sort();
         });
     }
 
     getStaffs(department: string = null): Staff[] {
-        return this.staffs
-             .filter(p => department == null || department == p.department);
+      return this.staffs
+             .filter(p => department == null || department == p.department_name);
+             
     }
+    
+
 
     getStaff(id: number): Staff {
         return this.staffs.find(p => p.id == id);

@@ -6,10 +6,10 @@ import { DashboardComponent } from "./dashboard.component";
 import { RouterModule } from "@angular/router";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReportsComponent } from '../reports/reports.component';
-import { LoginComponent } from "../login/login.component";
+
 @NgModule({
 imports: [ModelModule, BrowserModule, FormsModule, RouterModule, NgbModule],
-declarations: [DashboardComponent, ReportsComponent, LoginComponent],
+declarations: [DashboardComponent, ReportsComponent],
 exports: [DashboardComponent]
 })
 export class DashboardModule { }

@@ -1,0 +1,10 @@
+<div class="container-fluid">
+ <div *ngFor="let staff of staffs" class="col bg-primary text-black">
+<h1 class="text-capitalize">Welcome, {{staff.firstname}}</h1>
+</div>
+<div *ngFor="let staff of staffs" class="col bg-info text-black text-center">
+    <p class="lead">You  successfully signed in at {{staff.time_in}}</p>
+    <p class="lead" *ngIf="staff.time_out">You successfully signed out at {{staff.time_out}}</p>
+</div>
+<button class="" (click)="logOut()" >Log Out</button>
+</div>

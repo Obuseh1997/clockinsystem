@@ -1,15 +1,14 @@
 <table class="table table-sm table-striped">
     <thead>
         <tr>
-            <th>ID</th><th>Name</th><th>Department</th><th>Role</th><th>Edit/Delete</th>
+            <th>ID</th><th>Name</th><th>Department</th><th>Edit/Delete</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let p of staffs">
             <td>{{p.id}}</td>
             <td>{{p.firstname}}</td>
-            <td>{{p.department}}</td>
-            <td>{{p.role}}</td>
+            <td>{{p.department_name}}</td>
             <td>
                 <button class="btn btn-sm btn-warning"
                         [routerLink]="['/admin/main/staffs/edit', p.id]">
