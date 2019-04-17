@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import {  Router } from "@angular/router";
 import { StaffRepository } from "../model/staff.repository";
 import { Staff } from "../model/staff.model";
-import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { RestDataSource } from "../model/rest.datasource";
 
 @Component({
     templateUrl: "home.component.html"
@@ -13,7 +13,8 @@ export class HomeComponent {
 
     constructor(
         private router: Router,
-        private repository: StaffRepository
+        private repository: StaffRepository,
+        private datasource: RestDataSource
     ) {}
 
     get staffs(): Staff[] {

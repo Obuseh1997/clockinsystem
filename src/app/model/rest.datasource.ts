@@ -71,7 +71,7 @@ signOut(user_id) {
 
 
 getStaffs(): Observable<Staff[]> {
-return this.http.get<Staff[]>('http://localhost:8080/api/dashboard/dashboard.php',
+return this.http.get<Staff[]>('http://localhost:8080/api/employee/dashboard.php',
                                this.newOptions())
                 .pipe(
                     tap(data=> {
@@ -83,9 +83,50 @@ return this.http.get<Staff[]>('http://localhost:8080/api/dashboard/dashboard.php
                     catchError(this.handleError<Staff[]>('getStaffs'))
                 ); 
 }
+getDailyReports(): Observable<Staff[]> {
+    return this.http.get<Staff[]>('http://localhost:8080/api/report/dashboard.php',
+                                   this.newOptions())
+                    .pipe(
+                        tap(data=> {
+                            console.log('logged in ', data);
+                            let newData = data;
+                            let lastTime = newData.pop;
+                            console.log(lastTime);
+                        }),
+                        catchError(this.handleError<Staff[]>('getStaffs'))
+                    ); 
+    }
+getAbsentees(): Observable<Staff[]> {
+        return this.http.get<Staff[]>('http://localhost:8080/api/report/absent_employee.php',
+                                       this.newOptions())
+                        .pipe(
+                            tap(data=> {
+                                console.log('logged in ', data);
+                                let newData = data;
+                                let lastTime = newData.pop;
+                                console.log(lastTime);
+                            }),
+                            catchError(this.handleError<Staff[]>('getStaffs'))
+                        ); 
+        }
+
+    getIndividualReport(): Observable<Staff[]> {
+            return this.http.get<Staff[]>('http://localhost:8080/api/report/employee_report.php',
+                                           this.newOptions())
+                            .pipe(
+                                tap(data=> {
+                                    console.log('logged in ', data);
+                                    let newData = data;
+                                    let lastTime = newData.pop;
+                                    console.log(lastTime);
+                                }),
+                                catchError(this.handleError<Staff[]>('getStaffs'))
+                            ); 
+            }
+
 
 getDepartment(): Observable<Department[]> {
-    return this.http.get<Department[]>('http://localhost:8080/api/dashboard/view_departments.php',
+    return this.http.get<Department[]>('http://localhost:8080/api/employee/view_departments.php',
                                    this.newOptions())
                     .pipe(
                         tap(data=> console.log('logged in ', data)),
@@ -102,8 +143,8 @@ getStaffInfo(): Observable<Staff[]> {
                     ); 
     }
 
-sendDate(dateSelected: Date) {
-    return this.http.post('api',
+sendDate(dateSelected: string) {
+    return this.http.post('http://localhost:8080/api/report/admin_dashboard.php',
                           dateSelected,
                           this.newOptions())
                           .pipe(
@@ -117,7 +158,7 @@ clockIn(pin: number, callback) {
     console.log('Hello World' + pin);
     let headerTxt = { 'Content-Type': 'application/json' };
 
-    axios.post('http://localhost:8080/api/dashboard/employee_auth.php', {pin}, {headers: headerTxt})
+    axios.post('http://localhost:8080/api/employee/employee_auth.php', {pin}, {headers: headerTxt})
      .then(response =>{
            console.log(response);
            callback(response);
@@ -128,6 +169,23 @@ clockIn(pin: number, callback) {
          callback(error);
      })
  }
+
+ passDate(dateSelected: string, callback) {
+    console.log('Hello World' + dateSelected);
+    let headerTxt = { 'Content-Type': 'application/json' };
+
+    axios.post('http://localhost:8080/api/report/daily_report.php', {dateSelected}, {headers: headerTxt})
+     .then(response =>{
+           console.log(response);
+           callback(response);
+           
+}
+     ).catch(error=>{
+         console.log(error);
+         callback(error);
+     })
+ }
+
 
 loginAdmin(username, password, callback) {
     console.log("Hello World: "+ username  + password);
@@ -155,7 +213,7 @@ loginAdmin(username, password, callback) {
 
 
 saveStaff(staff: Staff): Observable<Staff> {
-    return this.http.post<Staff>("http://localhost:8080/api/dashboard/add_employee.php",
+    return this.http.post<Staff>("http://localhost:8080/api/employee/add_employee.php",
        staff, this.newOptions())
        .pipe(
         tap(data=> console.log('logged in ', data)),
@@ -164,7 +222,7 @@ saveStaff(staff: Staff): Observable<Staff> {
 }
 
 updateStaff(staff): Observable<Staff> {
-    return this.http.put<Staff>("http://localhost:8080/api/dashboard/update_employee.php",
+    return this.http.put<Staff>("http://localhost:8080/api/employee/update_employee.php",
         staff, this.newOptions())
         .pipe(
             tap(data=> console.log('logged in ', data)),
@@ -173,7 +231,7 @@ updateStaff(staff): Observable<Staff> {
 }
 
 deleteStaff(id: number): Observable<Staff> { 
-    return this.http.delete<Staff>("http://localhost:8080/api/dashboard/delete.php/"+ id,
+    return this.http.delete<Staff>("http://localhost:8080/api/employee/delete.php/"+ id,
       this.newOptions())
       .pipe(
         tap(data=> console.log('logged in ', data)),

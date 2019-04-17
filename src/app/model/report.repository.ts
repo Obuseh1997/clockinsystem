@@ -5,14 +5,22 @@ import { RestDataSource } from "./rest.datasource";
 
 
 @Injectable()
-export class AdminRepository {
+export class ReportRepository {
     private staffs: Staff[] = [];
     private departments: string[] = [];
+    private absentees: Staff[] = [];
+    private staff: Staff[] = [];
     
 
     constructor(private dataSource: RestDataSource) {
-        dataSource.getStaffInfo().subscribe(data => {
+        dataSource.getDailyReports().subscribe(data => {
             this.staffs = data;
+            dataSource.getAbsentees().subscribe(data => {
+            this.absentees = data;
+        });
+        dataSource.getIndividualReport().subscribe(data => {
+            this.staff = data;
+        });
             dataSource.getDepartment().subscribe(data => {
                 this.departments = data.map(user => user.department_name)
                     .filter((deptName, index, array) => array.indexOf(deptName) == index).sort();
@@ -25,35 +33,19 @@ export class AdminRepository {
              .filter(p => department == null || department == p.department_name);
     }
 
+    getAbsentees(department: string = null): Staff[] {
+        return this.absentees
+             .filter(p => department == null || department == p.department_name);
+    }
+
     getStaff(id: number): Staff {
-        return this.staffs.find(p => p.id == id);[]
+        return this.staff.find(p => p.id == id);[]
     }
     
     getDepartments(): string[] {
         return this.departments;
     }
-    saveStaff(staff: Staff) {
-        if (staff.id == null || staff.id == 0) {
-            this.dataSource.saveStaff(staff)
-                .subscribe(p => this.staffs.push(p));
-        } else {
-            this.dataSource.updateStaff(staff)
-                .subscribe(p => {
-                    this.staffs.splice(this.staffs.
-                         findIndex(p => p.id == staff.id), 1, staff);
-                });
-        }
-    }
+    
 
-    deleteStaff(id: number) {
-        this.dataSource.deleteStaff(id).subscribe(p => {
-            this.staffs.splice(this.staffs.
-                findIndex(p => p.id == id), 1);
-                
-      
-
-        })
-          
-       
-    }
+   
 }

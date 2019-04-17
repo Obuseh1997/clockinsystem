@@ -5,13 +5,15 @@ import { ModelModule } from "../model/model.module";
 import { ChartsModule } from "ng2-charts";
 import { RouterModule } from "@angular/router";
 import { ReportsComponent } from './reports.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
 imports: [ModelModule, 
           BrowserModule, 
           FormsModule, 
           RouterModule,
-          ChartsModule],
+          ChartsModule,
+          NgbModule],
 declarations: [ReportsComponent],
 exports: [ReportsComponent]
 })

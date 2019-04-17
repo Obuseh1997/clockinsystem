@@ -12,9 +12,10 @@ export class StaffRepository {
     constructor(private dataSource: RestDataSource) {
         dataSource.getStaffs().subscribe(data => {
             this.staffs = data;
-            
+        
             this.departments = data.map(user => user.department_name)
                 .filter((deptName, index, array) => array.indexOf(deptName) == index).sort();
+        
         });
     }
 

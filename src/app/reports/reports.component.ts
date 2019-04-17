@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { Staff} from "../model/staff.model";
-import { StaffRepository } from "../model/staff.repository";
+import { ReportRepository } from "../model/report.repository";
 import axios from "axios";
 import { RestDataSource } from '../model/rest.datasource';
 import { NgForm } from '@angular/forms';
@@ -11,14 +11,18 @@ import { NgForm } from '@angular/forms';
 })
 export class ReportsComponent {
     private selectedDepartment = null;
-    public dateSelected: Date;
+    public dateSelected: string;
 
 
-    constructor(private repository: StaffRepository,
+    constructor(private repository: ReportRepository,
                 private datasource: RestDataSource) {}
  
     get staffs(): Staff[] {
         return this.repository.getStaffs(this.selectedDepartment);
+    }
+
+    get absentees(): Staff[] {
+        return this.repository.getAbsentees(this.selectedDepartment);
     }
     get departments(): string[] {
         return this.repository.getDepartments();
@@ -36,9 +40,14 @@ displayTimeOut() {
 }
 
 pickDate(form: NgForm) {
-    if (form.valid) {
-    return this.datasource.sendDate(this.dateSelected)
-    }
+    return this.datasource.passDate(this.dateSelected,response =>{
+        if (response.success) {
+            console.log("date sent");
+        }
+        else {
+            console.log("no date sent");
+        }
+    });
 }
     
     

@@ -7,17 +7,31 @@
             <thead>
                 <tr class="thead-dark">
                 <th>STAFF</th>
-                    <th>ROLE</th>
                     <th>DEPARTMENT</th>
                     <th>TIME IN</th>
-                    <th>TIME OUT</th>
                 </tr>
             </thead>
             <tbody>
                 <tr  *ngFor="let staff of staffs" class="m-1 p-1 bg-light">
                     <td>{{staff.firstname}}</td>
-                    <td>{{staff.role}}</td>
-                    <td>{{staff.department}}</td>
+                    <td>{{staff.department_name}}</td>
+                    <td>{{staff.time_in}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered">
+            <thead>
+                <tr class="thead-dark">
+                <th>STAFF</th>
+                    <th>DEPARTMENT</th>
+                    <th>TIME OUT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr  *ngFor="let absent of absentees" class="m-1 p-1 bg-light">
+                    <td>{{absent.firstname}}</td>
+                    <td>{{absent.department_name}}</td>
+                    <td>{{absent.time_out}}</td>
                 </tr>
             </tbody>
         </table>
@@ -25,11 +39,12 @@
     <div class="form-inline float-left mr-1">
             <div class="form-group">
                     <label>Select Date</label>
-                    <input type= "date" class="form-control" name="dateSelected" [(ngModel)]="dateSelected" required/>
-                </div>  
+                    <input  type="date"  class="form-control" name="dateSelected" [(ngModel)]="dateSelected" required/>
+                </div> 
 </div>
-</form>
-<button class="btn btn-block btn-primary m-t-3" [type]="submit" routerLink="/dashboard">
+<button [type]="submit">Select</button> 
+<button class="btn  btn-primary" type="submit" name="submit" routerLink="/dashboard">
     Go back
 </button>
+</form>
 </div>
