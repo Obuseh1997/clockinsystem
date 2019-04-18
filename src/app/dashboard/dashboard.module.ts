@@ -5,11 +5,11 @@ import { ModelModule } from "../model/model.module";
 import { DashboardComponent } from "./dashboard.component";
 import { RouterModule } from "@angular/router";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReportsComponent } from '../reports/reports.component';
+
 
 @NgModule({
 imports: [ModelModule, BrowserModule, FormsModule, RouterModule, NgbModule],
-declarations: [DashboardComponent, ReportsComponent],
+declarations: [DashboardComponent],
 exports: [DashboardComponent]
 })
 export class DashboardModule { }

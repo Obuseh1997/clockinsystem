@@ -1,0 +1,31 @@
+<div class="col bg-info text-white">
+        <a class="navbar-brand">ABSENT STAFF</a>
+    </div>
+<div>
+<table class="table table-bordered">
+        <thead>
+            <tr class="thead-dark">
+            <th colspan="2">STAFF NOT IN THE OFFICE</th>
+            </tr>
+            <tr class="thead">
+                <th>STAFF NAME</th>
+                <th>DEPARTMENTS</th>
+                </tr>
+        </thead>
+        <tbody>
+            <tr  *ngFor="let absent of absentees" class="m-1 p-1 bg-light">
+                <td>{{absent.firstname}}</td>
+                <td>{{absent.department_name}}</td>
+            </tr>
+        </tbody>
+    </table>
+<form #form="ngForm" (ngSubmit)="pickDate()">
+<div class="form-inline float-left mr-1">
+        <div class="form-group">
+                <label>Select Date</label>
+                <input  type="date"  class="form-control" name="dateSelected" [(ngModel)]="dateSelected" required/>
+            </div> 
+</div>
+<button [type]="submit">Select</button>
+</form>
+</div>

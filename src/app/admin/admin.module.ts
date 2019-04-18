@@ -4,10 +4,10 @@ import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { AuthComponent } from "./auth.component";
 import { AdminComponent } from "./admin.component";
-import { AuthGuard } from './auth.guard';
 import { StaffTableComponent } from "./staffTable.component";
 import { StaffEditorComponent } from "./staffEditor.component";
-
+import { ReportsComponent } from './reports.component';
+import { AbsentComponent } from "./absentees.component"
 let routing = RouterModule.forChild([
 { path: "auth", component: AuthComponent },
 { 
@@ -16,6 +16,8 @@ let routing = RouterModule.forChild([
         { path: "staffs/:mode/:id", component: StaffEditorComponent },
         { path: "staffs/:mode", component: StaffEditorComponent },
         { path: "staffs", component: StaffTableComponent },
+        { path: "reports", component: ReportsComponent },
+        { path: "absentees", component: AbsentComponent },
         { path: "**", redirectTo: "staffs" }
     ]
  },
@@ -24,7 +26,7 @@ let routing = RouterModule.forChild([
 
 @NgModule({
     imports: [CommonModule, FormsModule, routing],
-    declarations: [AuthComponent, AdminComponent,
+    declarations: [AuthComponent, AdminComponent, ReportsComponent, AbsentComponent,
         StaffTableComponent, StaffEditorComponent]
     })
     export class AdminModule { }

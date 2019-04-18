@@ -52,8 +52,6 @@ export class StaffRepository {
         this.dataSource.deleteStaff(id).subscribe(p => {
             this.staffs.splice(this.staffs.
                 findIndex(p => p.id == id), 1);
-                
-      
 
         })
           

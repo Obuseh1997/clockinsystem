@@ -5,8 +5,7 @@ import { DashboardComponent } from "./dashboard/dashboard.component"
 import { AppComponent } from './app.component';
 import { RouterModule } from "@angular/router";
 import { DashboardFirstGuard } from "./dashboardFirst.guard";
-import { ReportsComponent } from "./reports/reports.component";
-import { LoginComponent } from "./login/login.component";
+
  
 
 
@@ -24,10 +23,6 @@ import { LoginComponent } from "./login/login.component";
         canActivate: [DashboardFirstGuard]
        }, 
 
-       {
-         path: "reports", component: ReportsComponent,
-         canActivate: [DashboardFirstGuard]
-       },
 
       { 
         path: "admin", 

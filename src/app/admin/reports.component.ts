@@ -6,7 +6,6 @@ import { RestDataSource } from '../model/rest.datasource';
 import { NgForm } from '@angular/forms';
 
 @Component ({
-    selector: 'reports',
     templateUrl: 'reports.component.html'
 })
 export class ReportsComponent {

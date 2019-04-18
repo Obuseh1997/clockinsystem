@@ -84,7 +84,7 @@ return this.http.get<Staff[]>('http://localhost:8080/api/employee/dashboard.php'
                 ); 
 }
 getDailyReports(): Observable<Staff[]> {
-    return this.http.get<Staff[]>('http://localhost:8080/api/report/dashboard.php',
+    return this.http.get<Staff[]>('http://localhost:8080/api/report/report.php',
                                    this.newOptions())
                     .pipe(
                         tap(data=> {
@@ -231,7 +231,7 @@ updateStaff(staff): Observable<Staff> {
 }
 
 deleteStaff(id: number): Observable<Staff> { 
-    return this.http.delete<Staff>("http://localhost:8080/api/employee/delete.php/"+ id,
+    return this.http.delete<Staff>("http://localhost:8080/api/employee/delete_employee.php",
       this.newOptions())
       .pipe(
         tap(data=> console.log('logged in ', data)),

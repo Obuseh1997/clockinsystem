@@ -1,4 +1,4 @@
-<div class="container-fluid">
+
     <div class="col bg-info text-white">
         <a class="navbar-brand">STAFF REPORTS</a>
     </div>
@@ -6,9 +6,15 @@
         <table class="table table-bordered">
             <thead>
                 <tr class="thead-dark">
-                <th>STAFF</th>
-                    <th>DEPARTMENT</th>
-                    <th>TIME IN</th>
+                <th colspan="4">DAILY CLOCK-IN REPORTS</th>
+                </tr>
+            </thead>
+            <thead class="thead">
+                <tr>
+                <th>STAFF NAME</th>
+                <th>DEPARTMENTS</th>
+                <th>TIME CHECKED IN</th>
+                <th>DATE</th>
                 </tr>
             </thead>
             <tbody>
@@ -16,22 +22,7 @@
                     <td>{{staff.firstname}}</td>
                     <td>{{staff.department_name}}</td>
                     <td>{{staff.time_in}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-bordered">
-            <thead>
-                <tr class="thead-dark">
-                <th>STAFF</th>
-                    <th>DEPARTMENT</th>
-                    <th>TIME OUT</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr  *ngFor="let absent of absentees" class="m-1 p-1 bg-light">
-                    <td>{{absent.firstname}}</td>
-                    <td>{{absent.department_name}}</td>
-                    <td>{{absent.time_out}}</td>
+                    <td>{{staff.entry_date}}</td>
                 </tr>
             </tbody>
         </table>
@@ -42,9 +33,6 @@
                     <input  type="date"  class="form-control" name="dateSelected" [(ngModel)]="dateSelected" required/>
                 </div> 
 </div>
-<button [type]="submit">Select</button> 
-<button class="btn  btn-primary" type="submit" name="submit" routerLink="/dashboard">
-    Go back
-</button>
+<button [type]="submit">Select</button>
 </form>
 </div>

@@ -9,6 +9,7 @@
                        <th scope="col">DEPARTMENT</th>
                         <th scope="col">CLOCK IN</th>
                        <th scope="col">CLOCK OUT</th>  
+                       <th scope="col">ENTRY DATE</th>  
                    </tr>
                </thead>
                <tbody>
@@ -25,6 +26,9 @@
                         <td>
                             {{staff.time_out}}
                         </td>
+                        <td>
+                            {{staff.entry_date}}
+                        </td>
                     </tr>
                </tbody>
            </table>
@@ -36,10 +40,7 @@
                         </select>
                         <button class="btn btn-block btn-primary m-t-3" [type]="submit" routerLink="/admin"> 
                             Admin
-                          </button> 
-                          <button class="btn btn-block btn-primary m-t-3" [type]="submit" routerLink="/reports"> 
-                            Reports
-                          </button> 
+                          </button>  
                           <button class="btn btn-block btn-info m-t-3" [type]="submit" routerLink="/login"> 
                             CLOCK IN
                           </button> 

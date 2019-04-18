@@ -25,7 +25,7 @@ export class HomeComponent {
     } 
 
     logOut() {
-        this.router.navigateByUrl('/dashboard');
+        window.location.reload();
     }
     
 }
